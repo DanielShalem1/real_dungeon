@@ -105,7 +105,7 @@ class Heal(Attack):
 
     @hp_checker
     def execute(self, attacker, **kwargs):
-        attacker.hp += 5
+        attacker.hp += 15
         damage = super().execute(0, attacker=attacker)
         playsound(r"/home/daniel/PycharmProjects/dungeon/music/healpop.wav")
         return damage

@@ -8,7 +8,7 @@ def main():
     carbarous = monsters.Hellhound()
     grimlock = monsters.Grimlock(hp=50)
     basiliks = monsters.Basiliks()
-    fight.full_fight(bob, grimlock)
+    fight.full_fight(bob, basiliks)
 
 if __name__ == "__main__":
     main()
