@@ -1,0 +1,4 @@
+things to install:
+pytest
+pygame - does not metter the version
+playsound
