@@ -36,7 +36,7 @@ def full_fight(creature_a, creature_b):
     else:
         attacker = creature_b
         defender = creature_a
-
+#hello
     while creature_b.hp > 0 and creature_a.hp > 0:  # as long as none of them died
         fight_turn(attacker, defender)  # fight turn
         if helpers.able_to_attack(defender):
