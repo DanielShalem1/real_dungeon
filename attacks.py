@@ -3,7 +3,7 @@ from playsound import playsound
 import sound
 import helpers
 import random
-
+import statuses
 def hp_checker(attack_func):
     """
     :param attack_func: the attack execute function
@@ -218,8 +218,41 @@ class Petrifying_gaze(Attack):
         if petrify_check:
             playsound(r"/home/daniel/PycharmProjects/dungeon/music/FastLava.wav")
             defender.hp -= damage
-            defender.status["petrified"] = 3
+            applied_status = statuses.Petrify()
+            defender.status[applied_status] = applied_status.duration
         else:
             damage = 0
             print("petrifies failed due to speed")
+        return damage
+
+class Curse(Attack):
+    """
+    apply curse status to the target which has random effects
+    """
+
+    def __init__(self):
+        desc = "apply curse status to the target"
+        super().__init__("Curse", desc)
+
+    @hp_checker
+    def execute(self, attacker, defender, **kwargs):
+        damage = super().execute(0, attacker=attacker)
+        applied_status = statuses.Curse()
+        defender.status[applied_status] = applied_status.duration
+        return damage
+
+class Dark_magic(Attack):
+    """
+    uses life energy and magic to apply pierce damage
+    """
+
+    def __init__(self):
+        desc = "uses life energy and magic to apply pierce damage"
+        super().__init__("dark magic", desc)
+
+    @hp_checker
+    def execute(self, attacker, defender, **kwargs):
+        damage = super().execute(attacker.magic + int(attacker.hp*0.1) , attacker=attacker)
+        attacker.hp -= int(attacker.hp*0.1)
+        defender.hp -= damage
         return damage

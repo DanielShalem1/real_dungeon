@@ -1,13 +1,14 @@
 import sound
 import pygame
 import helpers
-
+import statuses
 def status_duration_dec(list_of_living):
     for living in list_of_living:
         print(helpers.name_pick(living) + " : " + str(living.status))
         if living.status != {}: #checks if the living creature is affected by a status change
             statuses = list(living.status.keys())
             for status_effect in statuses:
+                status_effect.active_effect(living)
                 if living.status[status_effect] == 1:
                     del living.status[status_effect]
                 else:
@@ -19,11 +20,11 @@ def fight_turn(attacker, defender):
     :param defender: the creature who is being attack
     :return:
     """
-    status_duration_dec([attacker, defender])
     attacker.attack(defender=defender)
     def_name = helpers.name_pick(defender)
     attck_name = helpers.name_pick(attacker)
-    print("{} hp is: {} ; {} hp is: {}".format(attck_name, attacker.hp, def_name, defender.hp))
+    print("{} attr: hp={} speed={} armor={} power={} ".format(attck_name, attacker.hp, attacker.speed, attacker.armor, attacker.power))
+    print("{} attr: hp={} speed={} armor={} power={} ".format(def_name, defender.hp, defender.speed, defender.armor, defender.power))
 
 
 def full_fight(creature_a, creature_b):
@@ -41,6 +42,7 @@ def full_fight(creature_a, creature_b):
         fight_turn(attacker, defender)  # fight turn
         if helpers.able_to_attack(defender):
             attacker, defender = defender, attacker  # swaping the attacker and defender
+        status_duration_dec([attacker, defender])
 
     # check who won
     if creature_b.hp >= 0:

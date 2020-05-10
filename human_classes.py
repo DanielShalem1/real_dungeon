@@ -61,7 +61,7 @@ class Warlock(Human):
     """
     def __init__(self, hp, speed, armor, power, fear="", name="", magic=15):
         super().__init__(hp, speed, armor, power, fear, name, magic)
-        self.attacks += [attacks.Soul_burst(), attacks.Curse()]
+        self.attacks += [attacks.Dark_magic(), attacks.Curse()]
 
     def interact(self):
         heal_option = input("what a bad day, do you want me to curse you? Y/N")

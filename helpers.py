@@ -10,7 +10,7 @@ def able_to_attack(attacker):
     checks if the next creature to attack has a status preventing it from attacking
     :return: True if tha attacker can attack and False if not
     """
-    statuses = list(attacker.status.keys())
+    statuses = [s.name for s in list(attacker.status.keys())]#extract statuses names
 
     bad_statuses = ["petrified"] # list of statuses which prevent attacking
     if any([y in bad_statuses for y in statuses]): #checks if one if one of the attacker's statuses is in the bad_statuses list
