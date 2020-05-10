@@ -3,7 +3,7 @@ class Living:
     base class for all living things.
     All living things have: hp, speed, armor, power, type_of_creature and name
     """
-    def __init__(self, hp, speed, armor, power, type_of_creature, name=""):
+    def __init__(self, hp, speed, armor, power, type_of_creature, name="", magic=0):
         """
         :param hp: health
         :param speed: speed, used for attacks and turn order
@@ -24,6 +24,7 @@ class Living:
         self.power = power
         self.type_of_creature = type_of_creature
         self.status = {}
+        self.magic = magic
 
     def talk(self):
         """

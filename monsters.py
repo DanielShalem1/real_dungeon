@@ -8,10 +8,10 @@ class Monster(Living):
     The base monseter class, inherits from the Living class.
     Monsters have weakness and attacks list with different attacks objects from the attacks.py
     """
-    def __init__(self, hp, speed, armor, power, type_of_creature, weakness="", name=""):
+    def __init__(self, hp, speed, armor, power, type_of_creature, weakness="", name="", magic=0):
         self.weakness = weakness
 
-        super().__init__(hp, speed, armor, power, type_of_creature, name)
+        super().__init__(hp, speed, armor, power, type_of_creature, name, magic)
         self.attacks = [attacks.Paw_attack()]
 
     def roar(self):

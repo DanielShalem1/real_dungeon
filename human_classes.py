@@ -20,10 +20,10 @@ class Human(Living, NPC_interface):
     """
     the base human class, inherits from the Living class.
     """
-    def __init__(self, hp, speed, armor, power, fear="", name=""):
+    def __init__(self, hp, speed, armor, power, fear="", name="", magic=0):
         self.fear = fear
         self.attacks = [attacks.Punch()]
-        super().__init__(hp, speed, armor, power, "Human", name)
+        super().__init__(hp, speed, armor, power, "Human", name, magic)
 
     def talk(self):
         print("Hi! my name is {} what is your name?".format(self.name))
@@ -46,14 +46,27 @@ class Cleric(Human):
     """
     the base divine powers class
     """
-    def __init__(self, hp, speed, armor, power, fear="", name=""):
-        super().__init__(hp, speed, armor, power, fear, name)
+    def __init__(self, hp, speed, armor, power, fear="", name="", magic=10):
+        super().__init__(hp, speed, armor, power, fear, name, magic)
         self.attacks += [attacks.Soul_burst(), attacks.Heal()]
 
     def interact(self):
         heal_option = input("what a holly day, do you want me to heal you? Y/N")
         if heal_option.upper() == 'Y':
             pass #need to fill the heal
+
+class Warlock(Human):
+    """
+    the base divine powers class
+    """
+    def __init__(self, hp, speed, armor, power, fear="", name="", magic=15):
+        super().__init__(hp, speed, armor, power, fear, name, magic)
+        self.attacks += [attacks.Soul_burst(), attacks.Curse()]
+
+    def interact(self):
+        heal_option = input("what a bad day, do you want me to curse you? Y/N")
+        if heal_option.upper() == 'Y':
+            print("abada cadabra")
 
 if __name__ == "__main__":
 
