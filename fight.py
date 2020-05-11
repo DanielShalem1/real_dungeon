@@ -23,12 +23,12 @@ def fight_turn(attacker, defender):
     attacker.attack(defender=defender)
     def_name = helpers.name_pick(defender)
     attck_name = helpers.name_pick(attacker)
-    print("{} attr: hp={} speed={} armor={} power={} ".format(attck_name, attacker.hp, attacker.speed, attacker.armor, attacker.power))
-    print("{} attr: hp={} speed={} armor={} power={} ".format(def_name, defender.hp, defender.speed, defender.armor, defender.power))
+    print("{} attr: hp={} speed={} armor={} power={}, magic={} ".format(attck_name, attacker.hp, attacker.speed, attacker.armor, attacker.power, attacker.magic))
+    print("{} attr: hp={} speed={} armor={} power={}, magic={} ".format(def_name, defender.hp, defender.speed, defender.armor, defender.power, defender.magic))
 
 
 def full_fight(creature_a, creature_b):
-    #sound.play_sound(r"/home/daniel/PycharmProjects/dungeon/music/Chase - AShamaluevMusic.mp3")
+    sound.play_sound(r"/home/daniel/PycharmProjects/dungeon/music/Chase - AShamaluevMusic.mp3")
 
     # checking who is first by their speed
     if creature_a.speed >= creature_b.speed:
@@ -45,9 +45,9 @@ def full_fight(creature_a, creature_b):
         status_duration_dec([attacker, defender])
 
     # check who won
-    if creature_b.hp >= 0:
+    if creature_b.hp > 0:
         winner = helpers.name_pick(creature_b)
-    elif creature_a.hp >= 0:
+    elif creature_a.hp > 0:
         winner = helpers.name_pick(creature_a)
     else:
         winner = "none!"

@@ -237,6 +237,7 @@ class Curse(Attack):
     @hp_checker
     def execute(self, attacker, defender, **kwargs):
         damage = super().execute(0, attacker=attacker)
+        playsound(r"/home/daniel/PycharmProjects/dungeon/music/wickedmalelaugh1.wav")
         applied_status = statuses.Curse()
         defender.status[applied_status] = applied_status.duration
         return damage
@@ -253,6 +254,7 @@ class Dark_magic(Attack):
     @hp_checker
     def execute(self, attacker, defender, **kwargs):
         damage = super().execute(attacker.magic + int(attacker.hp*0.1) , attacker=attacker)
+        playsound(r"/home/daniel/PycharmProjects/dungeon/music/black.wav")
         attacker.hp -= int(attacker.hp*0.1)
         defender.hp -= damage
         return damage

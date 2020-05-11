@@ -14,3 +14,15 @@ class NPC_interface(metaclass=abc.ABCMeta):
         """
         raise NotImplementedError
 
+class item(metaclass=abc.ABCMeta):
+    @classmethod
+    def __subclasshook__(cls, subclass):
+        return (hasattr(subclass, 'name') and
+                hasattr(subclass, 'description') or NotImplemented)
+
+    @abc.abstractmethod
+    def active_effect(self):
+        """
+        all items to have basic active effect
+        """
+        raise NotImplementedError

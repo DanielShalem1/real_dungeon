@@ -18,3 +18,13 @@ def able_to_attack(attacker):
         return False
     else:
         return True
+
+def valid_value(value, len_choises):
+    if not value.isnumeric():
+        print("wrong value")
+        return False
+    elif int(value) > len_choises or int(value) < 0:
+        print("wrong value")
+        return False
+    else:
+        return True

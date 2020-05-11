@@ -1,7 +1,7 @@
 import monsters
 import human_classes
 import fight
-
+from inventory import *
 def main():
     bob = human_classes.Cleric(35,10,10,10,"dark","Bob")
     momo = monsters.Bullywug(speed=50,name="momo")
@@ -9,6 +9,7 @@ def main():
     grimlock = monsters.Grimlock(hp=50)
     basiliks = monsters.Basiliks()
     soro = human_classes.Warlock(40,30,35,20,"light","soro")
+    soro.inventory = {Elixir():2, Clarity_Water():1}
     fight.full_fight(soro, basiliks)
 
 if __name__ == "__main__":
