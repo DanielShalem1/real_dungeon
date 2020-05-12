@@ -4,7 +4,6 @@ import helpers
 import statuses
 def status_duration_dec(list_of_living):
     for living in list_of_living:
-        print(helpers.name_pick(living) + " : " + str(living.status))
         if living.status != {}: #checks if the living creature is affected by a status change
             statuses = list(living.status.keys())
             for status_effect in statuses:

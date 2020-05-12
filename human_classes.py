@@ -35,6 +35,8 @@ class Human(Living, NPC_interface):
         self.fear = fear
         self.attacks = [attacks.Punch()]
         self.inventory = {}
+        self.level = 1
+        self.money = 0
         super().__init__(hp, speed, armor, power, "Human", name, magic)
 
     def talk(self):

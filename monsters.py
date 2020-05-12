@@ -30,7 +30,6 @@ class Monster(Living):
         :return: the damage of the attack
         """
         attack_index = random.randrange(len(self.attacks))
-        print(kwargs)
         return self.attacks[attack_index].execute(damage=0,attacker=self, **kwargs)
 
 
@@ -41,7 +40,7 @@ class Bullywug(Monster):
 
 class Hellhound(Monster):
     def __init__(self, hp=45, speed=50, armor=15, power=17, type_of_creature="Hell Hound", weakness="light", name=""):
-        super().__init__(hp, speed, armor, power, type_of_creature, weakness, name)
+        super().__init__(hp, speed, armor, power, type_of_creature, weakness, name, magic=5)
         self.attacks += [attacks.Bite(), attacks.Fire_breath()]
 
 class Grimlock(Monster):
@@ -51,7 +50,7 @@ class Grimlock(Monster):
 
 class Basiliks(Monster):
     def __init__(self, hp=52, speed=25, armor=17, power=16, type_of_creature="Basiliks", weakness="", name=""):
-        super().__init__(hp, speed, armor, power, type_of_creature, weakness, name)
+        super().__init__(hp, speed, armor, power, type_of_creature, weakness, name, magic=10)
         self.attacks = [attacks.Spiked_bone(), attacks.Petrifying_gaze()]
 
 if __name__ == "__main__":

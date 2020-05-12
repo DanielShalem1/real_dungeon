@@ -98,14 +98,14 @@ class Punch(Attack):
 class Heal(Attack):
     def __init__(self):
         """
-        heal the user for 5 hp
+        heal the user
         """
-        desc = "heal the user for 5 hp"
+        desc = "heal the"
         super().__init__("heal", desc)
 
     @hp_checker
     def execute(self, attacker, **kwargs):
-        attacker.hp += 15
+        attacker.hp += 8 + int(attacker.magic * 0.8)
         damage = super().execute(0, attacker=attacker)
         playsound(r"/home/daniel/PycharmProjects/dungeon/music/healpop.wav")
         return damage
@@ -136,8 +136,10 @@ class Fire_breath(Attack):
 
     @hp_checker
     def execute(self, attacker, defender, **kwargs):
-        damage = super().execute(int(attacker.hp*0.4)+int(attacker.power*0.4), attacker=attacker)
+        damage = super().execute(int(attacker.hp*0.4)+int(attacker.power*0.2)+int(attacker.magic*0.4), attacker=attacker)
         defender.hp -= damage
+        applied_status = statuses.Burn()
+        defender.status[applied_status] = applied_status.duration
         playsound(r"/home/daniel/PycharmProjects/dungeon/music/burning.wav")
         return damage
 
@@ -208,7 +210,6 @@ class Petrifying_gaze(Attack):
         if attacker.speed < defender.speed:
             speed_def = defender.speed - attacker.speed
             petrify_chance = random.randrange(int(speed_def*0.5))
-            print ("the speed def:{} the petrify_chance number:{}".format(speed_def, petrify_chance))
             if petrify_chance == 0:
                 petrify_check = True
         else:
@@ -217,6 +218,7 @@ class Petrifying_gaze(Attack):
         #checking if the petrify succeded
         if petrify_check:
             playsound(r"/home/daniel/PycharmProjects/dungeon/music/FastLava.wav")
+            print("{} is petrified".format(helpers.name_pick(defender)))
             defender.hp -= damage
             applied_status = statuses.Petrify()
             defender.status[applied_status] = applied_status.duration

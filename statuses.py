@@ -1,5 +1,5 @@
 import random
-
+import helpers
 class Status():
     def __init__(self, duration=3, name=""):
         self.duration = duration
@@ -11,6 +11,14 @@ class Status():
 class Petrify(Status):
     def __init__(self):
         super().__init__(3,"petrified")
+
+class Burn(Status):
+    def __init__(self):
+        super().__init__(2,"Burn")
+
+    def active_effect(self, creature):
+        print("{} burned".format(helpers.name_pick(creature)))
+        creature.hp -= 3
 
 class Curse(Status):
     def __init__(self):
